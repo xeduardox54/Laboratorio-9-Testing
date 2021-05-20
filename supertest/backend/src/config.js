@@ -7,5 +7,6 @@ export const config = {
   mongo: {
     uri: process.env.MONGO_URI,
     db: process.env.MONGO_DB,
+    db_test: process.env.MONGO_DB_TEST,
   },
 }

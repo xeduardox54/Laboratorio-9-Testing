@@ -3,7 +3,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import routesPersons from './routes/auth';
 
-const app = express();
+export const app = express();
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
@@ -16,4 +16,4 @@ app.use(function(req, res, next) {
 });
 
 const port = process.env.PORT || 3001;
-app.listen(port,()=>console.log(`Listening on port ${port}`));
+export const server = app.listen(port,()=>console.log(`Listening on port ${port}`));
