@@ -2,8 +2,9 @@ import mongoDriver from 'mongodb'
 import { config } from '../config'
 const { MongoClient, ObjectId } = mongoDriver
 
+const NODE_ENV = process.env.NODE_ENV
 const MONGO_URI = config.mongo.uri
-const MONGO_DB = config.mongo.db
+const MONGO_DB = NODE_ENV == 'test' ? config.mongo.db_test : config.mongo.db
 
 class MongoLib {
   constructor () {
@@ -60,6 +61,11 @@ class MongoLib {
     const db = await this.connect()
     await db.collection(collection).deleteOne({ _id: ObjectId(id) })
     return id
+  }
+
+  async deleteAll (collection) {
+    const db = await this.connect()
+    return await db.collection(collection).remove({})
   }
 }
 

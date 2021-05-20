@@ -29,6 +29,10 @@ class MongoPersonsRepository { // implement an interface
     const id_person = await this.mongoDB.delete(this.collection, id)
     return id_person
   }
+
+  async deleteAll () {
+    return this.mongoDB.deleteAll(this.collection)
+  }
 }
 
 export default MongoPersonsRepository

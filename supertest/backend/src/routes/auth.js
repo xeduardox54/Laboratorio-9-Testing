@@ -4,7 +4,8 @@ import {
     getPersons,
     newPerson,
     updateOnePerson,
-    delPerson
+    delPerson,
+    delAllPersons
 } from '../components/persons/controller';
 import validationHandler from '../utils/middlewares/validationHandler';
 import {getPersonSchema,createPersonSchema,updatePersonSchema} from '../components/persons/domain/person';
@@ -17,6 +18,7 @@ router.get('/info',(req,res) => {
 router.get('/api/persons',validationHandler(getPersonSchema),getPersons);
 router.get('/api/persons/:id',validationHandler(getPersonSchema),getOnePerson);
 router.delete('/api/persons/:id',validationHandler(getPersonSchema),delPerson);
+router.delete('/api/persons',delAllPersons);
 router.put('/api/persons/:id',validationHandler(updatePersonSchema),updateOnePerson);
 router.post('/api/persons',validationHandler(createPersonSchema),newPerson);
 

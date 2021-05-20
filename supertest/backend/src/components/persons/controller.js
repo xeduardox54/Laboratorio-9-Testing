@@ -4,6 +4,7 @@ import getAllPersons from './application/getAllPersons'
 import createPerson from './application/createPerson'
 import updatePerson from './application/updatePerson'
 import deletePerson from './application/deletePerson'
+import deleteAllPersons from './application/deleteAllPersons'
 const PersonsRepository = new MongoPersonsRepository()
 
 /**
@@ -71,6 +72,18 @@ export const delPerson = async (req, res, next) => {
     res.status(201).json({
       id: id,
       message: 'Person deleted',
+    })
+  } catch (e) {
+    next(e)
+  }
+}
+
+export const delAllPersons = async (_, res, next) => {
+  try {
+    const query = deleteAllPersons({ PersonsRepository })
+    await query()
+    res.status(200).json({
+      message: 'Persons deleted',
     })
   } catch (e) {
     next(e)
